@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query';
+import { Link, Outlet, useMatch } from 'react-router-dom';
 import { useLocation, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { NumericLiteral } from 'typescript';
@@ -54,7 +55,7 @@ const TabBox = styled.div`
   gap: 10px;
 `;
 
-const Tab = styled.div`
+const Tab = styled.div<{ isActive: Boolean }>`
   text-transform: uppercase;
   text-align: center;
   font-size: 12px;
@@ -62,6 +63,7 @@ const Tab = styled.div`
   border-radius: 10px;
   padding: 7px 0px;
   background-color: ${({ theme }) => theme.cardColor};
+  color: ${(props) => props.isActive && props.theme.accentColor};
   a {
     &:hover {
       cursor: pointer;
@@ -130,6 +132,9 @@ interface IPriceInfo {
 const CoinDetail = () => {
   const { coinId } = useParams();
   const { state } = useLocation() as IRouterState;
+  const priceMatch = useMatch('/:coinId/price');
+  const chartMatch = useMatch('/:coinId/chart');
+
   const { isLoading: infoLoading, data: infoData } = useQuery<ICoinInfo>(
     ['info', coinId],
     () => fetchCoinInfo(coinId!),
@@ -174,9 +179,14 @@ const CoinDetail = () => {
             </InfoItem>
           </InfoBox>
           <TabBox>
-            <Tab>Price</Tab>
-            <Tab>Chart</Tab>
+            <Tab isActive={priceMatch !== null}>
+              <Link to="price">Price</Link>
+            </Tab>
+            <Tab isActive={chartMatch !== null}>
+              <Link to="chart">Chart</Link>
+            </Tab>
           </TabBox>
+          <Outlet />
         </>
       )}
     </Container>

@@ -23,9 +23,6 @@ const Loader = styled.div`
 `;
 
 const Coins = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 0 20px;
   text-align: center;
 `;
 
@@ -65,7 +62,7 @@ const CoinList = () => {
               return (
                 <Coin key={coin.id}>
                   <Link to={`/${coin.id}`} state={{ name: coin.name }}>
-                    {coin.name}
+                    {coin.name} &rarr;
                   </Link>
                 </Coin>
               );
