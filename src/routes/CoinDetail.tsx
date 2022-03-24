@@ -4,6 +4,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { NumericLiteral } from 'typescript';
 import { fetchCoinInfo, fetchPriceInfo } from '../api';
+import Mode from '../components/Mode';
 
 const Container = styled.div`
   padding: 0 20px;
@@ -146,6 +147,7 @@ const CoinDetail = () => {
   const loading = infoLoading || priceLoading;
   return (
     <Container>
+      <Mode />
       <Header>
         {state?.name ? state.name : loading ? 'Loading...' : infoData?.name}
       </Header>

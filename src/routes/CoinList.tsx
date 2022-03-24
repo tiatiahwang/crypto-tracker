@@ -2,6 +2,7 @@ import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { fetchCoinList } from '../api';
+import Mode from '../components/Mode';
 
 const Container = styled.div`
   padding: 0 20px;
@@ -52,6 +53,7 @@ const CoinList = () => {
   const { isLoading, data } = useQuery<ICoin[]>('allCoins', fetchCoinList);
   return (
     <Container>
+      <Mode />
       <Header>ALL COINS</Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
