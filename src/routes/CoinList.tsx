@@ -18,9 +18,16 @@ const Header = styled.div`
   color: ${({ theme }) => theme.accentColor};
 `;
 
-const Loader = styled.div``;
+const Loader = styled.div`
+  text-align: center;
+`;
 
-const Coins = styled.ul``;
+const Coins = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0 20px;
+  text-align: center;
+`;
 
 const Coin = styled.li`
   color: ${({ theme }) => theme.textColor};
@@ -29,7 +36,7 @@ const Coin = styled.li`
   margin-bottom: 10px;
   padding: 20px;
   cursor: pointer;
-  &:hover {
+  a:hover {
     color: ${({ theme }) => theme.accentColor};
   }
 `;
@@ -53,15 +60,17 @@ const CoinList = () => {
         <Loader>Loading...</Loader>
       ) : (
         <>
-          {data?.slice(0, 100).map((coin) => {
-            return (
-              <Coins key={coin.id}>
-                <Link to={`/${coin.id}`} state={{ name: coin.name }}>
-                  <Coin>{coin.name}</Coin>
-                </Link>
-              </Coins>
-            );
-          })}
+          <Coins>
+            {data?.slice(0, 100).map((coin) => {
+              return (
+                <Coin key={coin.id}>
+                  <Link to={`/${coin.id}`} state={{ name: coin.name }}>
+                    {coin.name}
+                  </Link>
+                </Coin>
+              );
+            })}
+          </Coins>
         </>
       )}
     </Container>
