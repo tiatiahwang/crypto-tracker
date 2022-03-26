@@ -5,14 +5,13 @@ import { themeState } from '../recoil/atom';
 
 const IconContainer = styled.div`
   cursor: pointer;
-  text-align: right;
-  padding-top: 20px;
+  margin-left: 10px;
   &:hover {
     color: ${({ theme }) => theme.accentColor};
   }
 `;
 
-const Mode = () => {
+const ModeBtn = () => {
   const isDark = useRecoilValue(themeState);
   const setIsDark = useSetRecoilState(themeState);
   const toggleTheme = () => setIsDark((prev) => !prev);
@@ -27,4 +26,4 @@ const Mode = () => {
   );
 };
 
-export default Mode;
+export default ModeBtn;
