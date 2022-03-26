@@ -70,6 +70,7 @@ const Chart = () => {
             chart: {
               height: 500,
               width: 500,
+              background: 'transparent',
               toolbar: {
                 show: false,
               },

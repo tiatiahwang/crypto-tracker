@@ -102,7 +102,7 @@ interface IPriceInfo {
   id: string;
   name: string;
   beta_value: number;
-  circulating_supply: NumericLiteral;
+  circulating_supply: number;
   max_supply: number;
   total_supply: number;
   first_data_at: string;
@@ -165,8 +165,8 @@ const CoinDetail = () => {
               <span>{infoData?.symbol}</span>
             </InfoItem>
             <InfoItem>
-              <span>open source</span>
-              <span>{infoData?.open_source ? 'YES' : 'NO'}</span>
+              <span>price</span>
+              <span>${priceData?.quotes.USD.price.toLocaleString()}</span>
             </InfoItem>
           </InfoBox>
           <Description>{infoData?.description}</Description>
