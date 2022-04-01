@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { useQuery } from 'react-query';
 import { Link, Outlet, useMatch } from 'react-router-dom';
 import { useLocation, useParams } from 'react-router-dom';
@@ -146,6 +147,11 @@ const CoinDetail = () => {
   const loading = infoLoading || priceLoading;
   return (
     <Container>
+      <Helmet>
+        <title>
+          {state?.name ? state.name : loading ? 'Loading...' : infoData?.name}
+        </title>
+      </Helmet>
       <NavBar />
       <Header>
         {state?.name ? state.name : loading ? 'Loading...' : infoData?.name}

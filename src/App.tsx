@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
+import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from 'styled-components';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import Router from './Router';
@@ -11,10 +11,11 @@ function App() {
   const isDark = useRecoilValue(themeState);
   return (
     <>
-      {' '}
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyle />
-        <Router />
+        <HelmetProvider>
+          <Router />
+        </HelmetProvider>
       </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={true} />
     </>
